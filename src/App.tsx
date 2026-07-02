@@ -57,6 +57,10 @@ function App() {
     if (!activeUserId) return;
     let cancelled = false;
 
+    // Clear the previous session's data immediately so a user switch never shows stale leftovers while fetching
+    setAssetReturns(null);
+    setQuarterlyFileName('');
+
     const applyParams = (p: any) => {
       setAge(p.age);
       setWithdrawalStartAge(p.withdrawal_start_age);
@@ -285,6 +289,9 @@ function App() {
     setYearlySummary([]);
     setExcelYearlySummary(null);
     setChartFromExcel(null);
+    setChartData(null);
+    setResults([]);
+    setSavedType2Charts(null);
 
     const applyData = (data: any) => {
       if (simulationType === 'swr') {
